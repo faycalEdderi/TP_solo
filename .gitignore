@@ -57,6 +57,3 @@ Thumbs.db
 # Others
 *.bak
 *.old
-
-# Dataset
-dataset/*
