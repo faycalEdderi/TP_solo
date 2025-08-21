@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Virtual environments
+env/
+venv/
+ENV/
+.venv/
+.env/
+
+# Data files
+*.csv
+*.tsv
+*.xls
+*.xlsx
+*.h5
+*.db
+*.sqlite
+*.json
+*.pickle
+*.pkl
+
+# Model files
+*.h5
+*.ckpt
+*.pt
+*.pth
+*.joblib
+*.sav
+
+# Logs and outputs
+*.log
+*.out
+*.tmp
+
+# TensorBoard
+runs/
+events.out.tfevents.*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Others
+*.bak
+*.old
