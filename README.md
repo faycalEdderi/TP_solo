@@ -1,3 +1,5 @@
+
+![Demo PixelUpscaller](tools/pixelUpscaller.gif)
 # Projet : Amélioration d’images pixel art de jeux vidéo avec ESRGAN
 
 ## Objectif

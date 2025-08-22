@@ -39,20 +39,29 @@ def enhance_image(img):
 def upscale():
     file = request.files['image']
     img = Image.open(file.stream).convert('RGB')
+    # Redimensionne si trop grand (max 512x512)
+    max_size = 512
+    if img.width > max_size or img.height > max_size:
+        ratio = min(max_size / img.width, max_size / img.height)
+        new_size = (int(img.width * ratio), int(img.height * ratio))
+        img = img.resize(new_size, Image.LANCZOS)
     sr_img = enhance_image(img)
     # Encode l'image upscalée en base64
     buffered = io.BytesIO()
     sr_img.save(buffered, format="PNG")
     upscaled_b64 = base64.b64encode(buffered.getvalue()).decode()
-    # Calcul des métriques si HR disponible
+    # Calcul des métriques entre l'image d'entrée (redimensionnée) et l'image upscalée
     psnr, ssim = None, None
     try:
-        hr_img = img  # Si tu veux comparer à l'original (à adapter si tu as une vraie HR)
+        lr_np = np.array(img)
         sr_np = np.array(sr_img)
-        hr_np = np.array(hr_img)
-        if min(sr_np.shape[0], sr_np.shape[1]) >= 7 and min(hr_np.shape[0], hr_np.shape[1]) >= 7:
-            psnr = float(peak_signal_noise_ratio(hr_np, sr_np))
-            ssim = float(structural_similarity(hr_np, sr_np, win_size=7, channel_axis=2))
+        # Redimensionne lr_np à la taille de sr_np si besoin
+        if lr_np.shape != sr_np.shape:
+            lr_img_resized = Image.fromarray(lr_np).resize(sr_np.shape[1::-1], Image.LANCZOS)
+            lr_np = np.array(lr_img_resized)
+        if min(sr_np.shape[0], sr_np.shape[1]) >= 7 and min(lr_np.shape[0], lr_np.shape[1]) >= 7:
+            psnr = float(peak_signal_noise_ratio(lr_np, sr_np))
+            ssim = float(structural_similarity(lr_np, sr_np, win_size=7, channel_axis=2))
     except Exception:
         pass
     return jsonify({
