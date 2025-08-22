@@ -64,9 +64,39 @@ def upscale():
             ssim = float(structural_similarity(lr_np, sr_np, win_size=7, channel_axis=2))
     except Exception:
         pass
+    # Génère deux graphiques séparés (PSNR et SSIM)
+    import matplotlib.pyplot as plt
+    import matplotlib
+    matplotlib.use('Agg')
+    # Graphique PSNR
+    fig_psnr, ax_psnr = plt.subplots()
+    ax_psnr.bar(['PSNR'], [psnr or 0], color='skyblue')
+    ax_psnr.set_ylim(0, max(50, (psnr or 0) + 5))
+    ax_psnr.set_title('PSNR')
+    plt.tight_layout()
+    buf_psnr = io.BytesIO()
+    plt.savefig(buf_psnr, format='png')
+    buf_psnr.seek(0)
+    psnr_graph_b64 = base64.b64encode(buf_psnr.read()).decode('utf-8')
+    plt.close(fig_psnr)
+    # Graphique SSIM
+    fig_ssim, ax_ssim = plt.subplots()
+    ax_ssim.bar(['SSIM'], [ssim or 0], color='orange')
+    ax_ssim.set_ylim(0, 1)
+    ax_ssim.set_title('SSIM')
+    plt.tight_layout()
+    buf_ssim = io.BytesIO()
+    plt.savefig(buf_ssim, format='png')
+    buf_ssim.seek(0)
+    ssim_graph_b64 = base64.b64encode(buf_ssim.read()).decode('utf-8')
+    plt.close(fig_ssim)
+    psnr_graph_url = f"data:image/png;base64,{psnr_graph_b64}"
+    ssim_graph_url = f"data:image/png;base64,{ssim_graph_b64}"
     return jsonify({
         'upscaled_image': upscaled_b64,
-        'metrics': {'psnr': psnr or 0, 'ssim': ssim or 0}
+        'metrics': {'psnr': psnr or 0, 'ssim': ssim or 0},
+        'psnr_graph': psnr_graph_url,
+        'ssim_graph': ssim_graph_url
     })
 
 if __name__ == '__main__':

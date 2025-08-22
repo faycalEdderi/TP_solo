@@ -7,6 +7,8 @@ function App() {
   const [originalImage, setOriginalImage] = useState(null);
   const [upscaledImage, setUpscaledImage] = useState(null);
   const [metrics, setMetrics] = useState(null);
+  const [psnrGraph, setPsnrGraph] = useState(null);
+  const [ssimGraph, setSsimGraph] = useState(null);
   const [loading, setLoading] = useState(false);
   const [zoomed, setZoomed] = useState(null); // 'original' | 'upscaled' | null
 
@@ -15,6 +17,8 @@ function App() {
       setOriginalImage(e.target.files[0]);
       setUpscaledImage(null);
       setMetrics(null);
+      setPsnrGraph(null);
+      setSsimGraph(null);
       setZoomed(null);
     }
   };
@@ -29,9 +33,11 @@ function App() {
         method: 'POST',
         body: formData,
       });
-      const data = await response.json();
-      setUpscaledImage(data.upscaled_image); // base64 string
-      setMetrics(data.metrics); // { psnr, ssim }
+  const data = await response.json();
+  setUpscaledImage(data.upscaled_image); // base64 string
+  setMetrics(data.metrics); // { psnr, ssim }
+  setPsnrGraph(data.psnr_graph); // base64 png url
+  setSsimGraph(data.ssim_graph); // base64 png url
     } catch (error) {
       alert('Erreur lors du traitement.');
     }
@@ -85,6 +91,27 @@ function App() {
           </div>
         )}
       </div>
+      {(psnrGraph || ssimGraph) && (
+        <div className="sn-metrics-graph-table">
+          <h5 style={{textAlign:'center',margin:'18px 0 8px 0'}}>Graphiques des métriques</h5>
+          <table style={{width:'100%',background:'#fff',borderCollapse:'collapse',margin:'0 auto'}}>
+            <tbody>
+              <tr>
+                {psnrGraph && (
+                  <td style={{textAlign:'center',padding:'16px',width:'50%'}}>
+                    <img src={psnrGraph} alt="PSNR graph" style={{maxWidth:'600px',width:'100%',border:'2px solid #222',background:'#fff'}} />
+                  </td>
+                )}
+                {ssimGraph && (
+                  <td style={{textAlign:'center',padding:'16px',width:'50%'}}>
+                    <img src={ssimGraph} alt="SSIM graph" style={{maxWidth:'600px',width:'100%',border:'2px solid #222',background:'#fff'}} />
+                  </td>
+                )}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )}
       {zoomed && (
         <div className="sn-modal" onClick={() => setZoomed(null)}>
           <img
