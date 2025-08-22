@@ -14,6 +14,7 @@ venv/
 ENV/
 .venv/
 .env/
+.env
 
 # Data files
 *.csv
@@ -60,3 +61,4 @@ Thumbs.db
 
 # Dataset
 dataset/*
+results/*
