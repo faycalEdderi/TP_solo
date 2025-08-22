@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* ----- CONTAINER ----- */
+.sn-container {
+  background: linear-gradient(135deg, #bdbdbd 0%, #e0e0e0 100%);
+  min-height: 100vh;
+  padding: 40px;
+  font-family: 'Press Start 2P', monospace;
+  color: #333;
+  text-align: center;
+}
+
+/* ----- TITRE ----- */
+.sn-title {
+  color: #c0392b;
+  text-shadow: 2px 2px 0 #fff, 4px 4px 0 #888;
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+}
+
+/* ----- INPUT ----- */
+.sn-input {
+  font-family: inherit;
+  background: #e0e0e0;
+  border: 2px solid #bdbdbd;
+  border-radius: 6px;
+  padding: 8px;
+  margin-right: 16px;
+  box-shadow: 2px 2px 0 #fff, 4px 4px 0 #888;
+}
+
+/* ----- BOUTON ----- */
+.sn-btn {
+  font-family: inherit;
+  background: #c0392b;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 #fff, 4px 4px 0 #888;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.sn-btn:hover {
+  background: #a93226;
+  transform: translateY(-2px);
+}
+
+.sn-btn:disabled {
+  background: #888;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ----- BLOC IMAGES ----- */
+.sn-images-row {
+  display: flex;
+  gap: 60px;
+  margin-top: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.sn-image-block {
+  background: #fff;
+  border: 2px solid #bdbdbd;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 2px 2px 0 #c0392b, 4px 4px 0 #888;
+  min-width: 320px;
+  text-align: center;
+}
+
+/* ----- LABEL ----- */
+.sn-label {
+  color: #c0392b;
+  font-size: 1.1rem;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+
+/* ----- IMAGE ----- */
+.sn-img {
+  max-width: 280px;
+  max-height: 280px;
+  border: 2px solid #c0392b;
+  border-radius: 8px;
+  cursor: zoom-in;
+  image-rendering: pixelated;
+  box-shadow: 2px 2px 0 #fff, 4px 4px 0 #888;
+  transition: transform 0.2s;
+}
+
+.sn-img:hover {
+  transform: scale(1.05);
+}
+
+.sn-zoomed {
+  outline: 4px solid #c0392b;
+  transform: scale(1.05);
+}
+
+/* ----- METRICS ----- */
+.sn-metrics {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #333;
+  background: #e0e0e0;
+  border-radius: 6px;
+  padding: 10px;
+  box-shadow: 2px 2px 0 #fff, 4px 4px 0 #888;
+}
+
+/* ----- MODAL ----- */
+.sn-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(60, 60, 60, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.sn-modal-img {
+  max-width: 80vw;
+  max-height: 80vh;
+  border: 6px solid #c0392b;
+  border-radius: 12px;
+  image-rendering: pixelated;
+  box-shadow: 4px 4px 0 #fff, 8px 8px 0 #888;
+}
+
+
+
+/* ----- LOADER CONTAINER ----- */
+.sn-loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  padding: 20px;
+  background: #fff;
+  border: 6px solid transparent;
+  border-image: linear-gradient(90deg, #c0392b, #f1c40f, #27ae60) 1;
+  border-radius: 12px;
+  box-shadow: 4px 4px 0 #888, 6px 6px 0 #333;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ----- LOADER GIF ----- */
+.sn-loader-gif {
+  width: 80px;
+  height: auto;
+  image-rendering: pixelated;
+  margin-bottom: 12px;
+}
+
+/* ----- LOADER TEXT ----- */
+.sn-loader-text {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.9rem;
+  color: #333;
+  text-shadow: 1px 1px 0 #f1c40f, 2px 2px 0 #c0392b;
+  animation: blink 1s infinite step-start;
+}
+
+/* Effet clignotement rétro */
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
