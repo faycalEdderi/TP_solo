@@ -2,6 +2,8 @@
 ![Demo PixelUpscaller](tools/pixelUpscaller.gif)
 # Projet : Amélioration d’images pixel art de jeux vidéo avec ESRGAN
 
+Telecharger le zip dui modele fine tuné ici : https://drive.google.com/drive/folders/1GDOpqq3qjtFK6Ywus4-EuZ7u3dm2-HkT?usp=sharing
+
 ## Objectif
 
 Ce projet vise à entraîner et à utiliser un modèle ESRGAN pour améliorer la qualité d’images pixelisées issues d’assets de jeux vidéo old school (type pixel art). L’objectif est de transformer des images basse résolution en versions haute résolution, tout en préservant le style graphique d’origine.
