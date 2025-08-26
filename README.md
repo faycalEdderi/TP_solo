@@ -2,7 +2,7 @@
 ![Demo PixelUpscaller](tools/pixelUpscaller.gif)
 # Projet : Amélioration d’images pixel art de jeux vidéo avec ESRGAN
 
-Telecharger le zip dui modele fine tuné ici : https://drive.google.com/drive/folders/1GDOpqq3qjtFK6Ywus4-EuZ7u3dm2-HkT?usp=sharing
+Telecharger le zip du modele fine tuné ici : https://drive.google.com/file/d/1c9v3aR7YLGzMAkMlXT-vNztUBWo2TIo9/view?usp=sharing
 
 ## Objectif
 
